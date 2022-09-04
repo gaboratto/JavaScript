@@ -34,19 +34,41 @@ La cantidad de números ingresados fueron:  ${cont}`)
 // EJERCICIO DE FUNCIONES
 
 
-let monto = Number(prompt("Ingrese el valor total de la oprecion: "))
 
-let cuota = Number(prompt("Ingrese la cantidad de coutas en la que desea realizar la operacion: "))
 
-function valor_cuota(monto,cuota){
-    return monto/cuota
+let total=0
+
+for (let precio= 1; precio <= 10; precio++){
+    
+    let valor= Number(prompt(`${precio} Ingrese los precios de los productos comprados: 
+    
+    (10 productos maximo, para finalizar poner 0 (cero))`))
+        total=total+valor
+        if (valor==0){
+            break
+        }
+
+
+
+
+
 }
 
-let resultado = valor_cuota(monto,cuota);
+
+let cuota = Number(prompt("Ingrese la cantidad de cuotas en la que desea realizar la operacion: "))
+
+function valor_cuota(total,cuota){
+    return total/cuota
+}
+
+let resultado = valor_cuota(total,cuota);
 
 
-console.log(resultado)
 
+
+alert(`El total a pagar es:  $${total}
+La cantidad de cuotas elegidas es:  ${cuota}
+El valor de cada cuota es: $${resultado}`)
 
 
 
