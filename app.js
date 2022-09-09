@@ -34,7 +34,7 @@ La cantidad de números ingresados fueron:  ${cont}`)
 // EJERCICIO DE FUNCIONES
 
 
-
+/*
 
 let total=0
 
@@ -71,6 +71,101 @@ La cantidad de cuotas elegidas es:  ${cuota}
 El valor de cada cuota es: $${resultado}`)
 
 
+*/
+
+
+const baseDeDatos = [
+    {
+        id: 1,
+        nombre: "Mate Madera",
+        precio: 5200
+        
+    },
+    {
+        id: 2,
+        nombre: 'Mate Acero',
+        precio: 3500
+        
+    },
+    {
+        id: 3,
+        nombre: "Mate Calabaza",
+        precio: 2900
+
+    },
+    {
+        id: 4,
+        nombre: "Bombilla Pico Loro Acero Inoxidable",
+        precio: 900
+
+    },
+    {
+        id: 5,
+        nombre: "Bombilla Resorte Acero Inoxidable",
+        precio: 500
+
+    },
+    {
+        id: 6,
+        nombre: "Bombilla Chata Acero Inoxidable",
+        precio: 700
+
+    },
+    {
+        id: 7,
+        nombre: "Filtro para Bombilla",
+        precio: 300
+
+    },
+    {
+        id: 8,
+        nombre: "Termo Acero Inoxidable 1 Lts",
+        precio: 15000
+
+    },
+    {
+        id: 8,
+        nombre: "Termo Acero Inoxidable 1,5 Lts",
+        precio: 25000
+
+    },
+    {
+        id: 9,
+        nombre: "Termo Acero Inoxidable 1,2 Lts",
+        precio: 20000
+
+    }
 
 
 
+
+];
+
+
+let resumen = "Listado de productos\n"
+
+for (let producto of baseDeDatos)
+	resumen += producto.id + ". "
+    	+ producto.nombre + ": "
+        + producto.precio + "\n"
+
+alert(resumen)
+
+let ids = prompt("Ingrese los ids de los productos que quiere comprar separados por coma")
+
+ids = ids.split(",")
+
+
+
+
+let total = 0
+
+for (let producto of baseDeDatos) {
+  for (let id of ids) {
+    if (id == producto.id)  {
+      total += producto.precio
+    }
+  }
+}
+
+alert("Total: " + total)
