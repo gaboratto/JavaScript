@@ -141,6 +141,7 @@ const baseDeDatos = [
 
 ];
 
+/*
 
 let resumen = "Listado de productos\n"
 
@@ -169,3 +170,33 @@ for (let producto of baseDeDatos) {
 }
 
 alert("Total: " + total)
+
+*/
+
+let section = document.getElementById("seccion-productos")
+let temp = document.querySelector("template")
+let card = temp.content.querySelector("div")
+
+
+baseDeDatos.forEach((producto)=>{
+    let cardClonada = card.cloneNode(true)
+    section.appendChild(cardClonada)
+
+    cardClonada.children[0].children[0].innerText = producto.nombre
+    cardClonada.children[0].children[1].innerText = producto.precio
+})
+
+const formulario = document.querySelector("form")
+const nombre = document.querySelector("#formName")
+const mensaje = document.querySelector("#formMensaje")
+
+formulario.addEventListener("submit" , validarFormulario)
+
+function validarFormulario (e){
+    e.preventDefault()
+    
+
+    document.querySelector("#saludo").innerHTML=`Gracias por tu consulta, ${nombre.value}`
+
+}
+
