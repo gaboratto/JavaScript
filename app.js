@@ -208,3 +208,72 @@ function traerCarrito(){
 
 traerCarrito()
 
+
+
+const boton = document.querySelector(".boton-compra")
+
+boton.addEventListener("click" , () => {
+
+    Swal.fire({
+        title: 'Compra exitosa',
+        text: 'Gracias por su compra!!',
+        icon: 'success',
+        confirmButtonText: 'Salir'
+      })
+
+
+})
+
+
+const boton2 = document.querySelector(".boton-enviar")
+
+boton2.addEventListener("click" , () => {
+
+
+    const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: '¿Estas seguro?',
+        
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, enviar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire(
+            'Mensaje enviado correctamente!',
+            'A la brevedad se le respondera su consulta, gracias!!',
+            'success'
+          )
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Mensaje cancelado',
+            '',
+            'error'
+          )
+        }
+      })
+
+    
+      })
+
+
+
+
+
+
+
+
+
+
