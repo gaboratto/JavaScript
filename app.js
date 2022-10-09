@@ -1,73 +1,23 @@
-const baseDeDatos = [
-    {
-        id: 1,
-        nombre: "Mate Madera",
-        precio: 5200
-        
-    },
-    {
-        id: 2,
-        nombre: 'Mate Acero',
-        precio: 3500
-        
-    },
-    {
-        id: 3,
-        nombre: "Mate Calabaza",
-        precio: 2900
-
-    },
-    {
-        id: 4,
-        nombre: "Bombilla Pico Loro Acero Inoxidable",
-        precio: 900
-
-    },
-    {
-        id: 5,
-        nombre: "Bombilla Resorte Acero Inoxidable",
-        precio: 500
-
-    },
-    {
-        id: 6,
-        nombre: "Bombilla Chata Acero Inoxidable",
-        precio: 700
-
-    },
-    {
-        id: 7,
-        nombre: "Filtro para Bombilla",
-        precio: 300
-
-    },
-    {
-        id: 8,
-        nombre: "Termo Acero Inoxidable 1 Lts",
-        precio: 15000
-
-    },
-    {
-        id: 8,
-        nombre: "Termo Acero Inoxidable 1,5 Lts",
-        precio: 25000
-
-    },
-    {
-        id: 9,
-        nombre: "Termo Acero Inoxidable 1,2 Lts",
-        precio: 20000
-
-    }
-
-
-
-
-];
+let baseDeDatos = []
 
 let carrito = []
 
+const pedirPost = async()=>{
+    const respuesta = (await fetch("http://localhost:8080/base.json"))
+    baseDeDatos = (await respuesta.json()).baseDeDatos
+  
 
+    mostrarBase()
+    mostrarCarrito()
+
+}
+
+pedirPost()
+
+
+const mostrarBase = () => {
+
+    
 
 let section = document.getElementById("seccion-productos")
 let temp = document.querySelector("template")
@@ -80,8 +30,30 @@ baseDeDatos.forEach((producto)=>{
 
     cardClonada.children[0].children[0].innerText = producto.nombre
     cardClonada.children[0].children[1].innerText = producto.precio
-    cardClonada.querySelector("a").dataset.productoid = producto.id
+    cardClonada.querySelector("a.boton").dataset.productoid = producto.id
+    cardClonada.querySelector("a.botonQuitar").dataset.productoid = producto.id
 })
+
+document.querySelectorAll(".boton").forEach(boton => {
+
+    
+
+    boton.addEventListener("click", aniadirProductoAlCarrito)
+
+    
+    
+  
+  })
+
+
+  document.querySelectorAll(".botonQuitar").forEach(function (botonQuitar) {
+    botonQuitar.addEventListener("click", quitarProductoAlCarrito)
+})
+
+
+
+
+}
 
 const formulario = document.querySelector("form")
 const nombre = document.querySelector("#formName")
@@ -97,20 +69,17 @@ function validarFormulario (e){
 
 }
 
-document.querySelectorAll(".boton").forEach(boton => {
-
-    boton.addEventListener("click", aniadirProductoAlCarrito)
-    
-  
-  })
 
 
 
 function aniadirProductoAlCarrito(evento){
 
     
+
+    
     for (let producto of baseDeDatos) {
         if(evento.target.dataset.productoid == producto.id){
+            
             carrito.push(producto)
         }
       }
@@ -123,12 +92,6 @@ function aniadirProductoAlCarrito(evento){
 }
 
 
-document.querySelectorAll(".botonQuitar").forEach(botonQuitar => {
-
-    botonQuitar.addEventListener("click", quitarProductoAlCarrito)
-    
-  
-  })
 
 
 
@@ -137,7 +100,9 @@ document.querySelectorAll(".botonQuitar").forEach(botonQuitar => {
   
       let index = carrito.findIndex(producto => producto.id == evento.target.dataset.productoid)
 
+        if (index >= 0){
         carrito.splice(index, 1)
+        }
 
 
         mostrarCarrito()
@@ -161,9 +126,14 @@ function mostrarCarrito() {
             total += producto.precio
           }
 
+         
+
           
           elemento.innerHTML += "<br>" + "$" + total
 
+
+
+         
     }
 
 
@@ -191,10 +161,12 @@ function traerCarrito(){
 
 
 
-    if(Array.isArray(compraActual)){
+    if(Array.isArray(compraActual) && compraActual.length > 0){
         carrito=compraActual
         mostrarCarrito()
     }
+
+
 
 
 
@@ -267,8 +239,6 @@ boton2.addEventListener("click" , () => {
 
     
       })
-
-
 
 
 

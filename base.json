@@ -1,0 +1,70 @@
+{ 
+    "baseDeDatos":
+    [
+    {
+        "id": 1,
+        "nombre": "Mate Madera",
+        "precio": 5200
+        
+    },
+    {
+        "id": 2,
+        "nombre": "Mate Acero",
+        "precio": 3500
+        
+    },
+    {
+        "id": 3,
+        "nombre": "Mate Calabaza",
+        "precio": 2900
+
+    },
+    {
+        "id": 4,
+        "nombre": "Bombilla Pico Loro Acero Inoxidable",
+        "precio": 900
+
+    },
+    {
+        "id": 5,
+        "nombre": "Bombilla Resorte Acero Inoxidable",
+        "precio": 500
+
+    },
+    {
+        "id": 6,
+        "nombre": "Bombilla Chata Acero Inoxidable",
+        "precio": 700
+
+    },
+    {
+        "id": 7,
+        "nombre": "Filtro para Bombilla",
+        "precio": 300
+
+    },
+    {
+        "id": 8,
+        "nombre": "Termo Acero Inoxidable 1 Lts",
+        "precio": 15000
+
+    },
+    {
+        "id": 8,
+        "nombre": "Termo Acero Inoxidable 1,5 Lts",
+        "precio": 25000
+
+    },
+    {
+        "id": 9,
+        "nombre": "Termo Acero Inoxidable 1,2 Lts",
+        "precio": 20000
+
+    }
+
+
+
+
+]
+
+}
