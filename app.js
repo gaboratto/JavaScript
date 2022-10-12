@@ -3,7 +3,7 @@ let baseDeDatos = []
 let carrito = []
 
 const pedirPost = async()=>{
-    const respuesta = (await fetch("http://localhost:8080/base.json"))
+    const respuesta = (await fetch("/base.json"))
     baseDeDatos = (await respuesta.json()).baseDeDatos
   
 
@@ -104,6 +104,8 @@ function aniadirProductoAlCarrito(evento){
         carrito.splice(index, 1)
         }
 
+        
+
 
         mostrarCarrito()
         guardarCarrito()
@@ -120,10 +122,11 @@ function mostrarCarrito() {
 
     for (let producto of carrito) {
          elemento.innerHTML += producto.nombre + " "
-         elemento.innerHTML += "$" + producto.precio + "<br>"
+         elemento.innerHTML += "$" + producto.precio + " " + '<button data-productoid= " '  + producto.id + ' "  class="borrar-carrito">X</button>' + "<br>" 
          
          
             total += producto.precio
+            
           }
 
          
@@ -133,9 +136,23 @@ function mostrarCarrito() {
 
 
 
-         
-    }
 
+          document.querySelectorAll(".borrar-carrito").forEach(function (botonQuitar){ 
+            botonQuitar.addEventListener("click", quitarProductoAlCarrito) 
+
+            
+        
+        })}
+
+
+          
+
+          
+
+
+
+         
+    
 
 
     
